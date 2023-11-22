@@ -1,29 +1,31 @@
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardContainer } from "./styled/styled";
-import { CardProps } from "@mui/material";
-import { forwardRef } from "react";
+import { ReactNode, forwardRef } from 'react'
 
-interface SwipeCardProps extends CardProps {
-  image: string;
+interface SwipeCardProps {
+  image: string
+  header?: ReactNode
+  content?: ReactNode
+  footer?: ReactNode
 }
 
-const SwipeCard = forwardRef<HTMLDivElement, SwipeCardProps>(({ image, ...props }, ref) => {
+const SwipeCard = forwardRef<HTMLDivElement, SwipeCardProps>(({ image, header, content, footer, ...props }, ref) => {
   return (
-    <CardContainer {...props} ref={ref}>
-      <CardMedia component="img" image={image} title="app" />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents
-          except Antarctica
-        </Typography>
-      </CardContent>
-    </CardContainer>
-  );
-});
+    <div
+      className="flex flex-col justify-between bg-white shadow-md rounded-3xl h-full w-full absolute"
+      id="swipe-card"
+      {...props}
+      ref={ref}
+    >
+      {header ? (
+        <div className="mb-4">
+          <h2 className="text-lg font-bold">{header}</h2>
+        </div>
+      ) : (
+        <img className="w-full h-[350px] object-cover rounded-t-3xl" src={image} alt="Cover" />
+      )}
+      {content && <div className="mb-4">{content}</div>}
+      {footer && <div>{footer}</div>}
+    </div>
+  )
+})
 
-export default SwipeCard;
+export default SwipeCard

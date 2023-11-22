@@ -1,1 +1,1 @@
-export { default as SwipeCard } from './src/App'
+export { default as CardSwiper } from './src/App'

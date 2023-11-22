@@ -1,24 +1,25 @@
-import { CardSwiper } from "./cardSwiper";
+import { CardSwiper } from './cardSwiper'
 // DOM
-const swiper = document.querySelector("#swiper");
+const swiper = document.querySelector('#swiper')
 
 // functions
 export function appendNewCard(element: HTMLDivElement) {
-  new CardSwiper({
-    element,
-    onDismiss: () => {
-      // for pagination use
-    },
-    onLike: () => {
-      // activate like button animation
-    },
-    onDislike: () => {
-      // activate dislike button animation
-    },
-  });
+  element &&
+    new CardSwiper({
+      element,
+      onDismiss: () => {
+        // for pagination use
+      },
+      onLike: () => {
+        // activate like button animation
+      },
+      onDislike: () => {
+        // activate dislike button animation
+      },
+    })
 }
 
-const cards = swiper?.children;
+const cards = swiper?.children
 for (const card in cards) {
-  appendNewCard(card as unknown as HTMLDivElement);
+  appendNewCard(card as unknown as HTMLDivElement)
 }

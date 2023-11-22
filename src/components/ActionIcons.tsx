@@ -1,21 +1,20 @@
-import { SvgIcon, SvgIconProps } from "@mui/material";
+import { SVGProps } from 'react'
+// icon:check | Bootstrap https://icons.getbootstrap.com/ | Bootstrap
 
-export function CheckIcon(props: SvgIconProps) {
+function IconCheckmark(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
-      <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 12.6111L8.92308 17.5L20 6.5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </SvgIcon>
-  );
+    <svg viewBox="0 0 20 20" fill="currentColor" height="1em" width="1em" {...props}>
+      <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+    </svg>
+  )
 }
 
-export function UnCheckIcon(props: SvgIconProps) {
+function IconXmark(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
-      <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M6 6L18 18M18 6L6 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </SvgIcon>
-  );
+    <svg viewBox="0 0 320 512" fill="currentColor" height="1em" width="1em" {...props}>
+      <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256l105.3-105.4z" />
+    </svg>
+  )
 }
+
+export { IconXmark, IconCheckmark }

@@ -1,19 +1,17 @@
-import Fab from '@mui/material/Fab'
-import { CheckIcon, UnCheckIcon } from './ActionIcons'
-import { FloatingActionWrapper } from './styled/styled'
+import { IconCheckmark, IconXmark } from './ActionIcons'
 
 interface FloatingActionButtonsProps {}
 
 export default function FloatingActionButtons({}: FloatingActionButtonsProps) {
   return (
-    <FloatingActionWrapper>
-      <Fab sx={{ bgcolor: 'white', boxShadow: '0 0 5px 0px #00000050' }} aria-label="uninstall">
-        <UnCheckIcon stroke="#ff624c" sx={{ fontSize: '40px' }} />
-      </Fab>
+    <div className="flex w-full justify-evenly p-2">
+      <div className="bg-white rounded-full drop-shadow-md p-2 hover:bg-gray-50 cursor-pointer" aria-label="uninstall">
+        <IconXmark color="#ff624c" width={'2em'} height={'2em'} />
+      </div>
 
-      <Fab sx={{ bgcolor: 'white', boxShadow: '0 0 5px 0px #00000050' }} aria-label="install">
-        <CheckIcon stroke="#00cba7" sx={{ fontSize: '40px' }} />
-      </Fab>
-    </FloatingActionWrapper>
+      <div className="bg-white rounded-full drop-shadow-md p-2 hover:bg-gray-50 cursor-pointer" aria-label="install">
+        <IconCheckmark color="#00cba7" width={'2em'} height={'2em'} />
+      </div>
+    </div>
   )
 }
