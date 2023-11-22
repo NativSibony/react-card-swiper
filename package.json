@@ -1,7 +1,7 @@
 {
   "name": "react-card-swiper",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
@@ -24,7 +24,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "npm run build",
     "preview": "vite preview",
-    "pub": "npm version patch --force && npm publish"
+    "pub:patch": "npm version patch --force && npm publish",
+    "pub:minor": "npm version minor --force && npm publish",
+    "pub:major": "npm version major --force && npm publish"
   },
   "dependencies": {
     "react": "^18.2.0",
