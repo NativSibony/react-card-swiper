@@ -46,5 +46,15 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.0",
     "vite-plugin-dts": "^3.6.3"
-  }
+  },
+  "keywords": [
+    "react",
+    "swiper",
+    "card",
+    "tinder",
+    "card swiper",
+    "react swiper",
+    "tinder swiper",
+    "react card swiper"
+  ]
 }
