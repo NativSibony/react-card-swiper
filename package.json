@@ -1,19 +1,25 @@
 {
   "name": "react-card-swiper",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "type": "module",
-  "main": "dist/index.umd.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/react-card-swiper.umd.cjs",
+  "module": "./dist/react-card-swiper.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "import": {
+        "default": "./dist/react-card-swiper.js",
+        "types": "./dist/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/react-card-swiper.umd.cjs",
+        "types": "./dist/index.d.ts"
+      }
     }
   },
   "files": [
-    "./dist"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
