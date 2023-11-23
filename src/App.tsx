@@ -1,10 +1,10 @@
-import FloatingActionButtons from './components/FloatingActionButtons'
-import SwipeCard from './components/SwipeCard'
+import FloatingActionButtons from './lib/components/FloatingActionButtons'
+import SwipeCard from './lib/components/SwipeCard'
 
 import candyCrash from './assets/images/candy-crash.png'
 import clashOfClans from './assets/images/clash-of-clans.webp'
 import bubbleShooter from './assets/images/bubble-shooter.png'
-import { appendNewCard } from './utils'
+import { appendNewCard } from './lib/utils/index'
 
 export default function App() {
   const images = [bubbleShooter, clashOfClans, candyCrash]
