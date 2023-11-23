@@ -1,7 +1,7 @@
 {
   "name": "react-card-swiper",
   "private": false,
-  "version": "0.0.15",
+  "version": "0.0.16",
   "type": "module",
   "main": "./dist/react-card-swiper.umd.cjs",
   "module": "./dist/react-card-swiper.js",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf dist && vite build && npm run build-tailwind && tsc src/libs/index.tsx",
+    "build": "rm -rf dist && vite build && npm run build-tailwind && tsc src/lib/index.tsx",
     "build-tailwind": "NODE_ENV=production npx tailwindcss -i ./src/assets/styles/main.css -o ./dist/globals.css --postcss --minify",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "npm run build",
