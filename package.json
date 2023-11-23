@@ -1,7 +1,7 @@
 {
   "name": "react-card-swiper",
   "private": false,
-  "version": "0.0.12",
+  "version": "0.0.10",
   "type": "module",
   "main": "./dist/react-card-swiper.umd.cjs",
   "module": "./dist/react-card-swiper.js",
