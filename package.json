@@ -24,6 +24,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "author": {
+    "name": "Nativ Sibony",
+    "url": "https://github.com/nativsibony"
+  },
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && vite build",
