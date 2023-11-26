@@ -1,5 +1,5 @@
 import React from 'react'
-import '../main.css'
+import './main.css'
 import { appendNewCard } from '../utils'
 interface SwipeCardProps {
   data: CardData[]
