@@ -1,1 +1,2 @@
-export { SwipeCard } from './components/SwipeCard'
+export { SwipeCard, type CardData } from './components/SwipeCard'
+export { appendNewCard } from './utils'

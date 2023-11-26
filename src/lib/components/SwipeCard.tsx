@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import '../main.css'
 import { appendNewCard } from '../utils'
 interface SwipeCardProps {
   data: CardData[]
+  onLike: (element: HTMLDivElement) => void
+  onDislike: (element: HTMLDivElement) => void
   children?: React.JSX.Element
 }
 
@@ -18,8 +20,8 @@ export const SwipeCard = ({ data, children }: SwipeCardProps) => {
   }
 
   return (
-    <div className="swipe-card">
-      <div className="swipe-card__cards">
+    <div className="swipe-card" id="swipe-card">
+      <div className="swipe-card__cards" id="swipe-card__cards">
         {data.map(({ header, src, content }) => (
           <div key={src} ref={handleNewCard} className="swipe-card__container" id="swipe-card__container">
             {header && (

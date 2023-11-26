@@ -41,17 +41,14 @@ export default function App() {
   const mockData: CardData[] = [
     {
       src: new URL('./assets/images/candy-crash.png', import.meta.url).href,
-      header: <Header />,
       content: <Content />,
     },
     {
       src: new URL('./assets/images/clash-royal.jpg', import.meta.url).href,
-      header: <Header />,
       content: <Content />,
     },
     {
       src: new URL('./assets/images/bubble-shooter.png', import.meta.url).href,
-      header: <Header />,
       content: <Content />,
     },
   ]
@@ -59,7 +56,7 @@ export default function App() {
   return (
     <main className="flex flex-col h-full w-full p-5">
       <section className="flex h-full w-full relative">
-        <SwipeCard data={mockData}>
+        <SwipeCard data={mockData} onLike={(el) => console.log(el)} onDislike={(el) => console.log(el)}>
           <ActionButtons />
         </SwipeCard>
       </section>

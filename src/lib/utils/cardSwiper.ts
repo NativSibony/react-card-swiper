@@ -123,12 +123,12 @@ export class CardSwiper {
     document.removeEventListener('mousemove', this.handleMouseMove)
     document.removeEventListener('touchend', this.handleTouchEnd)
     document.removeEventListener('touchmove', this.handleTouchMove)
-    this.element.style.transition = 'all 1s'
+    this.element.style.transition = 'all 0.6s'
     this.element.style.transform = `translate(${direction * window.innerWidth * 2}px, ${this.offsetY}px) rotate(${
       60 * direction
     }deg)`
     this.element.classList.add('dismissing')
-    setTimeout(() => this.element.remove(), 500)
+    setTimeout(() => this.element.remove(), 300)
 
     if (typeof this.onDismiss === 'function') {
       this.onDismiss()

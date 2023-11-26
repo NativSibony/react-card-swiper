@@ -1,6 +1,4 @@
 import { CardSwiper } from './cardSwiper'
-// DOM
-const swiper = document.querySelector('#swiper')
 
 // functions
 export function appendNewCard(element: HTMLDivElement) {
@@ -21,9 +19,4 @@ export function appendNewCard(element: HTMLDivElement) {
       },
       dislikeButtonId: 'swipe-card__dislike-btn',
     })
-}
-
-const cards = swiper?.children
-for (const card in cards) {
-  appendNewCard(card as unknown as HTMLDivElement)
 }
