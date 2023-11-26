@@ -1,0 +1,69 @@
+.swipe-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  height: 100%;
+}
+
+.swipe-card__cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.swipe-card__container {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  gap: 10px;
+  cursor: grab;
+  user-select: none;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+  transform: translateY(calc(25px));
+  scale: 0.95;
+  transition: all 0.5s;
+}
+
+.swipe-card__container:nth-child(n + 1) {
+  --i: 1;
+}
+
+.card:only-child {
+  --i: 0 !important;
+}
+
+.swipe-card__container:last-child {
+  transform: translateY(0);
+  scale: 1;
+}
+
+.swipe-card__header {
+  display: flex;
+}
+
+.swipe-card__image-container {
+  position: relative;
+  height: 250px;
+}
+
+.swipe-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.swipe-card__children {
+  bottom: 0;
+  width: 100%;
+}

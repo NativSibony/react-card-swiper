@@ -1,31 +1,40 @@
-import { ReactNode, forwardRef } from 'react'
-
+import React, { useEffect, useRef } from 'react'
+import '../main.css'
+import { appendNewCard } from '../utils'
 interface SwipeCardProps {
-  image: string
-  header?: ReactNode
-  content?: ReactNode
-  footer?: ReactNode
+  data: CardData[]
+  children?: React.JSX.Element
 }
 
-export const SwipeCard = forwardRef<HTMLDivElement, SwipeCardProps>(
-  ({ image, header, content, footer, ...props }, ref) => {
-    return (
-      <div
-        className="flex flex-col justify-between bg-white shadow-md rounded-3xl h-full w-full absolute"
-        id="swipe-card"
-        {...props}
-        ref={ref}
-      >
-        {header ? (
-          <div className="mb-4">
-            <h2 className="text-lg font-bold">{header}</h2>
+export interface CardData {
+  src: string
+  header?: React.JSX.Element
+  content?: React.JSX.Element
+}
+
+export const SwipeCard = ({ data, children }: SwipeCardProps) => {
+  const handleNewCard: React.LegacyRef<HTMLDivElement> = (ref) => {
+    ref && appendNewCard(ref)
+  }
+
+  return (
+    <div className="swipe-card">
+      <div className="swipe-card__cards">
+        {data.map(({ header, src, content }) => (
+          <div key={src} ref={handleNewCard} className="swipe-card__container" id="swipe-card__container">
+            {header && (
+              <div className="swipe-card__header-container" id="swipe-card__header-container">
+                <h2 id="swipe-card__header">{header}</h2>
+              </div>
+            )}
+            <div className="swipe-card__image-container">
+              <img className="swipe-card__image" src={src} alt={src} id="swipe-card__image" />
+            </div>
+            {content && <div className="swipe-card__content">{content}</div>}
           </div>
-        ) : (
-          <img className="w-full h-[350px] object-cover rounded-t-3xl" src={image} alt="Cover" />
-        )}
-        {content && <div className="mb-4">{content}</div>}
-        {footer && <div>{footer}</div>}
+        ))}
       </div>
-    )
-  },
-)
+      <div className="swipe-card__children">{children}</div>
+    </div>
+  )
+}
