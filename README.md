@@ -11,6 +11,20 @@
 
 ---
 
+## 🔗 Component Attributes
+
+- `data`: array of object
+- `onLike`: function
+- `onDislike`: function
+
+| parameter | type                | default | required | description                   |
+| --------- | ------------------- | ------- | -------- | ----------------------------- |
+| data      | Record<string, any> |         | true     | data to be passed to the card |
+| onLike    | Function            |         | false    | onLike callback               |
+| onDislike | Function            |         | false    | onDislike callback            |
+
+---
+
 ## 🔨 Usage
 
 ```tsx
@@ -70,17 +84,3 @@ function Demo({}: Props) {
 
 export default Demo
 ```
-
----
-
-## 🔗 Component attributes
-
-- `data`: array of object
-- `onLike`: function
-- `onDislike`: function
-
-| parameter | type                | default | required | description                   |
-| --------- | ------------------- | ------- | -------- | ----------------------------- |
-| data      | Record<string, any> |         | true     | data to be passed to the card |
-| onLike    | Function            |         | false    | onLike callback               |
-| onDislike | Function            |         | false    | onDislike callback            |
