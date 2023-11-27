@@ -1,10 +1,9 @@
 .swipe-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
+  gap: 30px;
   width: 100%;
   height: 100%;
 }
@@ -65,5 +64,20 @@
 
 .swipe-card__children {
   bottom: 0;
+  display: flex;
+  justify-content: space-around;
   width: 100%;
+}
+
+.swipe-card__action-button {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(71, 71, 71, 0.2);
+  cursor: pointer;
 }
