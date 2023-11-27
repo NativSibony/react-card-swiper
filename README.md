@@ -1,14 +1,17 @@
-# React Card Swiper
+## <h1 align="center">react-card-swiper</h1>
 
-A Tinder Like - Card Swiper
+[![npm package](https://img.shields.io/npm/v/react-card-swiper/latest.svg)](https://www.npmjs.com/package/react-card-swiper)
+[![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
 
-#### Installation
+## 📦 Installation
 
-- `npm install --save react-card-swiper`
+```shell
+  npm i --save react-card-swiper
+```
 
 ---
 
-### Example with MUI
+## 🔨 Usage
 
 ```tsx
 import bubbleShooter from '@/assets/images/bubble-shooter.png'
@@ -67,3 +70,17 @@ function Demo({}: Props) {
 
 export default Demo
 ```
+
+---
+
+## 🔗 Component attributes
+
+- `data`: array of object
+- `onLike`: function
+- `onDislike`: function
+
+| parameter | type                | default | required | description                   |
+| --------- | ------------------- | ------- | -------- | ----------------------------- |
+| data      | Record<string, any> |         | true     | data to be passed to the card |
+| onLike    | Function            |         | false    | onLike callback               |
+| onDislike | Function            |         | false    | onDislike callback            |

@@ -30,7 +30,7 @@
   cursor: grab;
   user-select: none;
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  transform: translateY(calc(25px));
+  transform: translateY(calc(28px));
   scale: 0.95;
   transition: all 0.5s;
 }

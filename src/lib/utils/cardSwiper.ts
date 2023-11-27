@@ -1,9 +1,8 @@
-interface CardProps {
+import { CardEvents } from '../components/SwipeCard'
+
+interface CardSwiperProps extends CardEvents {
+  id: string | number
   element: HTMLDivElement
-  dislikeButtonId?: string
-  onDismiss: () => void
-  onLike: () => void
-  onDislike: () => void
 }
 
 interface StartPoint {
@@ -11,19 +10,19 @@ interface StartPoint {
   y: number
 }
 
-export class CardSwiper {
+export class CardSwiper implements CardEvents {
   element: HTMLDivElement
-  onDismiss: () => void
-  onLike: () => void
-  onDislike: () => void
-  dislikeButtonId: string | undefined
+  id: string | number
+  onLike: (element: HTMLDivElement, id?: string | number | undefined) => void
+  onDislike: (element: HTMLDivElement, id?: string | number | undefined) => void
+  onDismiss?: () => void
 
-  constructor({ element, onDismiss, onLike, onDislike, dislikeButtonId }: CardProps) {
+  constructor({ element, id, onDismiss, onLike, onDislike }: CardSwiperProps) {
     this.element = element
+    this.id = id
     this.onDismiss = onDismiss
     this.onLike = onLike
     this.onDislike = onDislike
-    this.dislikeButtonId = dislikeButtonId
 
     this.init()
   }
@@ -134,10 +133,10 @@ export class CardSwiper {
       this.onDismiss()
     }
     if (typeof this.onLike === 'function' && direction === 1) {
-      this.onLike()
+      this.onLike(this.element, this.id)
     }
     if (typeof this.onDislike === 'function' && direction === -1) {
-      this.onDislike()
+      this.onDislike(this.element)
     }
   }
 }
