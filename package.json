@@ -24,10 +24,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": {
-    "name": "Nativ Sibony",
-    "url": "https://github.com/nativsibony"
-  },
+  "author": "Nativ Sibony (https://github.com/nativsibony)",
   "scripts": {
     "dev": "vite",
     "build": "rm -rf dist && vite build",
@@ -71,5 +68,15 @@
     "react card swiper",
     "tinder card swiper",
     "react-card-swiper"
-  ]
+  ],
+  "description": "A Tinder Like - Card Swiper",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nativsibony/react-card-swiper"
+  },
+  "homepage": "https://github.com/nativsibony/react-card-swiper",
+  "bugs": {
+    "url": "https://github.com/nativsibony/react-card-swiper/issues"
+  }
 }
