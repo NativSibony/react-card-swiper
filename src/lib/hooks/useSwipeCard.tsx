@@ -1,9 +1,14 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { CardData, CardEvents, SwipeAction, SwipeDirection } from '../types/types'
 import { CardSwiper } from '../utils/cardSwiper'
 
-export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe }: CardEvents) => {
-  const [swiper, setSwiper] = useState<CardSwiper[]>([])
+interface UseSwipeCard extends CardEvents {
+  data: CardData[]
+}
+
+export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe, onFinish, data }: UseSwipeCard) => {
+  const [swiper, setSwiper] = useState<CardSwiper[]>([...Array(data.length)])
+  const [dynamicData, setDynamicData] = useState(data)
 
   const handleLikeSwipe = useCallback(
     (element: HTMLDivElement, id?: CardData['id']) => {
@@ -28,7 +33,7 @@ export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe }: CardEve
   }, [onDismiss])
 
   const handleNewCard = useCallback(
-    (ref: HTMLDivElement | null, id: CardData['id']) => {
+    (ref: HTMLDivElement | null, id: CardData['id'], index: number) => {
       if (ref) {
         const swiper = new CardSwiper({
           element: ref,
@@ -37,11 +42,20 @@ export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe }: CardEve
           onLikeSwipe: handleLikeSwipe,
           onDislikeSwipe: handleDislikeSwipe,
         })
-        setSwiper((prev) => [...prev, swiper])
+
+        setSwiper((prev) => {
+          const updatedSwiper = [...prev]
+          updatedSwiper[index] = swiper
+          return updatedSwiper
+        })
       }
     },
     [handleDismiss, handleLikeSwipe, handleDislikeSwipe],
   )
+
+  useEffect(() => {
+    if (!swiper?.length && onFinish) onFinish(SwipeAction.FINISH)
+  }, [swiper.length, onFinish])
 
   // Handlers
   const handleActionButtonClick = (direction: SwipeDirection) => {
@@ -51,6 +65,8 @@ export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe }: CardEve
 
   return {
     swiper,
+    dynamicData,
+    setDynamicData,
     setSwiper,
     handleNewCard,
     handleActionButtonClick,

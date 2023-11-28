@@ -11,24 +11,26 @@ export const SwipeCard = ({
   onLikeSwipe,
   onDislikeSwipe,
   onDismiss,
+  onFinish,
   likeButton,
   dislikeButton,
   withActionButtons = false,
 }: SwipeCardProps) => {
-  const [dynamicData, setDynamicData] = useState(data)
-
-  const { handleActionButtonClick, handleNewCard } = useSwipeCard({
+  const { handleActionButtonClick, handleNewCard, dynamicData } = useSwipeCard({
     onDislikeSwipe,
     onLikeSwipe,
     onDismiss,
+    onFinish,
+    data,
   })
 
   const swipeCardComponents = useMemo(
     () =>
-      dynamicData.map(({ id, header, src, content }) => (
+      dynamicData &&
+      dynamicData.map(({ id, header, src, content }, index) => (
         <div
           key={id}
-          ref={(ref) => handleNewCard(ref, id)}
+          ref={(ref) => handleNewCard(ref, id, index)}
           className="swipe-card__container"
           id="swipe-card__container"
         >

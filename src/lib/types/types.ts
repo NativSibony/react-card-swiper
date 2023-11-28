@@ -17,6 +17,7 @@ export type CardEvent = (element: HTMLDivElement, id?: CardData['id'], action?: 
 export interface CardEvents {
   onLikeSwipe: CardEvent
   onDislikeSwipe: CardEvent
+  onFinish?: (status: string) => void
   onDismiss?: () => void
 }
 
@@ -28,4 +29,5 @@ export enum SwipeDirection {
 export enum SwipeAction {
   LIKE = 'like',
   DISLIKE = 'dislike',
+  FINISH = 'finish',
 }

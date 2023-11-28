@@ -39,6 +39,7 @@ export default function App() {
           data={mockData}
           onLikeSwipe={handleSwipe}
           onDislikeSwipe={handleSwipe}
+          onFinish={(status) => console.log(status)}
           dislikeButton={<div>Left</div>}
           likeButton={<div>Right</div>}
           withActionButtons
