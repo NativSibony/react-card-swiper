@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { SwipeCard, type CardData } from './lib'
-import { CardEvent } from './lib/types/types'
+import { SwipeCard } from './lib'
+import { type CardEvent, type CardData } from './lib/types/types'
 
 const Content = () => (
   <div className="flex items-center justify-center">
@@ -12,24 +12,27 @@ const Content = () => (
 const mockData: CardData[] = [
   {
     id: '88552078',
+    meta: { apk: 'some-apk-a.apk' },
     src: new URL('./assets/images/candy-crash.png', import.meta.url).href,
     content: <Content />,
   },
   {
     id: 'fc7e0bd4',
+    meta: { apk: 'some-apk-b.apk' },
     src: new URL('./assets/images/clash-royal.jpg', import.meta.url).href,
     content: <Content />,
   },
   {
     id: 'da9a7067',
+    meta: { apk: 'some-apk-c.apk' },
     src: new URL('./assets/images/bubble-shooter.png', import.meta.url).href,
     content: <Content />,
   },
 ]
 
 export default function App() {
-  const handleSwipe: CardEvent = (el, id, action) => {
-    console.log(el, id, action)
+  const handleSwipe: CardEvent = (el, meta, id, action) => {
+    console.log({ el, meta, id, action })
   }
 
   return (

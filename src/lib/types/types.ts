@@ -8,11 +8,17 @@ export interface SwipeCardProps extends CardEvents {
 export interface CardData {
   id: string | number
   src: string
+  meta: Record<string, unknown> | Array<unknown>
   header?: React.JSX.Element
   content?: React.JSX.Element
 }
 
-export type CardEvent = (element: HTMLDivElement, id?: CardData['id'], action?: SwipeAction) => void
+export type CardEvent = (
+  element: HTMLDivElement,
+  meta: CardData['meta'],
+  id: CardData['id'],
+  action?: SwipeAction,
+) => void
 
 export interface CardEvents {
   onLikeSwipe: CardEvent

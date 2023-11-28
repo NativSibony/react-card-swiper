@@ -11,19 +11,19 @@ export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe, onFinish,
   const [dynamicData, setDynamicData] = useState(data)
 
   const handleLikeSwipe = useCallback(
-    (element: HTMLDivElement, id?: CardData['id']) => {
+    (element: HTMLDivElement, meta: CardData['meta'], id: CardData['id']) => {
       // Handle the like swipe event here
       setSwiper((prev) => prev.slice(0, -1))
-      onLikeSwipe && onLikeSwipe(element, id, SwipeAction.LIKE)
+      onLikeSwipe && onLikeSwipe(element, meta, id, SwipeAction.LIKE)
     },
     [onLikeSwipe],
   )
 
   const handleDislikeSwipe = useCallback(
-    (element: HTMLDivElement, id?: CardData['id']) => {
+    (element: HTMLDivElement, meta: CardData['meta'], id: CardData['id']) => {
       // Handle the dislike swipe event here
       setSwiper((prev) => prev.slice(0, -1))
-      onDislikeSwipe && onDislikeSwipe(element, id, SwipeAction.DISLIKE)
+      onDislikeSwipe && onDislikeSwipe(element, meta, id, SwipeAction.DISLIKE)
     },
     [setSwiper, onDislikeSwipe],
   )
@@ -33,11 +33,12 @@ export const useSwipeCard = ({ onDismiss, onDislikeSwipe, onLikeSwipe, onFinish,
   }, [onDismiss])
 
   const handleNewCard = useCallback(
-    (ref: HTMLDivElement | null, id: CardData['id'], index: number) => {
+    (ref: HTMLDivElement | null, id: CardData['id'], index: number, meta: CardData['meta']) => {
       if (ref) {
         const swiper = new CardSwiper({
           element: ref,
           id,
+          meta,
           onDismiss: handleDismiss,
           onLikeSwipe: handleLikeSwipe,
           onDislikeSwipe: handleDislikeSwipe,

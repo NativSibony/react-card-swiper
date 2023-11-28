@@ -1,6 +1,6 @@
 import '../main.css'
 
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { SwiperRightActionButton } from './SwiperRightActionButton'
 import { SwiperLeftActionButton } from './SwiperLeftActionButton'
 import { useSwipeCard } from '../hooks/useSwipeCard'
@@ -27,10 +27,10 @@ export const SwipeCard = ({
   const swipeCardComponents = useMemo(
     () =>
       dynamicData &&
-      dynamicData.map(({ id, header, src, content }, index) => (
+      dynamicData.map(({ id, header, src, content, meta }, index) => (
         <div
           key={id}
-          ref={(ref) => handleNewCard(ref, id, index)}
+          ref={(ref) => handleNewCard(ref, id, index, meta)}
           className="swipe-card__container"
           id="swipe-card__container"
         >
