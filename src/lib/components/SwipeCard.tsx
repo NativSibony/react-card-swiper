@@ -1,4 +1,4 @@
-import './main.css'
+import '../main.css'
 
 import { useMemo, useState } from 'react'
 import { SwiperRightActionButton } from './SwiperRightActionButton'
