@@ -1,5 +1,7 @@
 ## <h1 align="center">react-card-swiper</h1>
 
+## <h6>A Tinder Like Card Swiper</h6>
+
 [![npm package](https://img.shields.io/npm/v/react-card-swiper/latest.svg)](https://www.npmjs.com/package/react-card-swiper)
 [![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
 
@@ -17,70 +19,62 @@
 - `onLike`: function
 - `onDislike`: function
 
-| parameter | type                | default | required | description                   |
-| --------- | ------------------- | ------- | -------- | ----------------------------- |
-| data      | Record<string, any> |         | true     | data to be passed to the card |
-| onLike    | Function            |         | false    | onLike callback               |
-| onDislike | Function            |         | false    | onDislike callback            |
+| parameter         | type              | default | required | description                   |
+| ----------------- | ----------------- | ------- | -------- | ----------------------------- |
+| data              | CardData[]        |         | true     | data to be passed to the card |
+| onLikeSwipe       | CardEvent         |         | false    | onLike event                  |
+| onDislikeSwipe    | CardEvent         |         | false    | onDislike event               |
+| onFinish          | CardEvent         |         | false    | onFinish event                |
+| dislikeButton     | React.JSX.Element |         | false    | your custom dislike button    |
+| likeButton        | React.JSX.Element |         | false    | your custom like button       |
+| withActionButtons | Boolean           | false   | false    | with action buttons flag      |
 
 ---
 
 ## 🔨 Usage
 
 ```tsx
+import { Stack, Typography } from '@mui/material'
+
 import bubbleShooter from '@/assets/images/bubble-shooter.png'
 import candyCrash from '@/assets/images/candy-crash.png'
 import clashRoyal from '@/assets/images/clash-royal.jpg'
 
-import { Box, IconButton, Stack, Typography } from '@mui/material'
-
-import { CardData, SwipeCard } from 'react-card-swiper'
-
-interface Props {}
+import { CardData, CardEvent, SwipeCard } from 'react-card-swiper'
 
 const Content = () => (
-  <Box p={2}>
-    <Typography variant="h5">Lorem, ipsum.</Typography>
-    <Typography variant="subtitle2">
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis, sit eum nostrum odit esse ab exercitationem
-      alias maxime maiores quis.
-    </Typography>
-  </Box>
+  <Typography px={2} variant="h6">
+    Lorem ipsum dolor sit amet.
+  </Typography>
 )
 
-const ActionButtons = () => {
-  return (
-    <Stack direction="row" width={'100%'} justifyContent={'space-evenly'} alignItems={'center'}>
-      <IconButton aria-label="delete" sx={{ boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.3)' }}>
-        <svg viewBox="0 0 20 20" fill="palegreen" height="2em" width="2em">
-          <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
-        </svg>
-      </IconButton>
+const mockData: CardData[] = [
+  { id: '88552078', meta: { apk: 'some-apk-a.apk' }, src: bubbleShooter, content: <Content /> },
+  { id: 'fc7e0bd4', meta: { apk: 'some-apk-b.apk' }, src: candyCrash, content: <Content /> },
+  { id: 'da9a7067', meta: { apk: 'some-apk-c.apk' }, src: clashRoyal, content: <Content /> },
+]
 
-      <IconButton aria-label="delete" sx={{ boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.3)' }}>
-        <svg viewBox="0 0 320 512" fill="lightcoral" height="2em" width="2em">
-          <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256l105.3-105.4z" />
-        </svg>
-      </IconButton>
-    </Stack>
-  )
-}
+export default function SwipeSelectionPage() {
+  const handleSwipe: CardEvent = (el, meta, id, action) => {
+    console.log({ el, meta, id, action })
+  }
 
-function Demo({}: Props) {
-  const mockData: CardData[] = [
-    { src: candyCrash, content: <Content /> },
-    { src: clashRoyal, content: <Content /> },
-    { src: bubbleShooter, content: <Content /> },
-  ]
+  const handleFinish = (status: string) => {
+    console.log(status) // 'finished'
+  }
 
   return (
     <Stack height={'100%'} width={'100%'} direction="column" alignItems="center" justifyContent={'end'} p={2}>
-      <SwipeCard data={mockData} onLike={(el) => console.log(el)} onDislike={(el) => console.log(el)}>
-        <ActionButtons />
-      </SwipeCard>
+      <SwipeCard
+        data={mockData}
+        onLikeSwipe={handleSwipe}
+        onDislikeSwipe={handleSwipe}
+        onFinish={handleFinish}
+        dislikeButton={<div>Left</div>}
+        likeButton={<div>Right</div>}
+        withActionButtons
+      />
     </Stack>
   )
 }
-
-export default Demo
 ```
