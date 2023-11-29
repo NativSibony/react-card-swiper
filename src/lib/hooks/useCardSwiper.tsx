@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { CardData, CardEvents, CardId, CardMetaData, SwipeAction, SwipeDirection } from '../types/types'
 import { Swiper } from '../utils/swiper'
 
@@ -28,13 +28,15 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
     onDismiss && onDismiss(element, meta, id, action)
   }
 
-  const handleClickEvents = (direction: SwipeDirection) => {
-    if (swiperIndex) {
-      const swiper = swiperElements.current.pop()
-      swiper?.dismissById(direction)
-      setCurrentSwiperIndex((prev) => prev - 1)
-    }
-  }
+  const handleClickEvents = useCallback(
+    (direction: SwipeDirection) => {
+      if (swiperIndex) {
+        const swiper = swiperElements.current.pop()
+        swiper?.dismissById(direction)
+      }
+    },
+    [swiperIndex],
+  )
 
   return {
     dynamicData,
