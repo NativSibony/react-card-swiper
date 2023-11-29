@@ -1,9 +1,10 @@
-export { SwipeCard } from './components/SwipeCard'
+export { CardSwiper } from './components/CardSwiper'
 
 export {
   type CardData,
-  type SwipeCardProps,
   type SwipeAction,
   type SwipeDirection,
   type CardEvent,
+  type CardId,
+  type CardMetaData,
 } from './types/types'

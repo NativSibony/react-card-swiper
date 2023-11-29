@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { SwipeCard } from './lib'
+import { CardSwiper } from './lib'
 import { type CardEvent, type CardData } from './lib/types/types'
 
 const Content = () => (
@@ -38,14 +38,13 @@ export default function App() {
   return (
     <main className="flex flex-col h-full w-full p-5">
       <section className="flex h-full w-full relative">
-        <SwipeCard
+        <CardSwiper
           data={mockData}
-          onLikeSwipe={handleSwipe}
-          onDislikeSwipe={handleSwipe}
           onFinish={(status) => console.log(status)}
+          onDismiss={handleSwipe}
+          withActionButtons
           dislikeButton={<div>Left</div>}
           likeButton={<div>Right</div>}
-          withActionButtons
         />
       </section>
     </main>

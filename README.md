@@ -13,21 +13,23 @@
 
 ---
 
-## 🔗 Component Attributes
+## 🔗 Props
 
-- `data`: array of object
-- `onLike`: function
-- `onDislike`: function
+- `data`: Card Data Array of Objects
+- `onDismiss`: Card Event of Card Dismiss
+- `onFinish`: When All Cards Have Been Dismissed
+- `dislikeButton`: your custom react dislike button
+- `likeButton`: your custom react like button
+- `withActionButtons`: with action buttons flag - if set to true, both like and dislike buttons must be passed as props, otherwise the default one's will appear
 
-| parameter         | type              | default | required | description                   |
-| ----------------- | ----------------- | ------- | -------- | ----------------------------- |
-| data              | CardData[]        |         | true     | data to be passed to the card |
-| onLikeSwipe       | CardEvent         |         | false    | onLike event                  |
-| onDislikeSwipe    | CardEvent         |         | false    | onDislike event               |
-| onFinish          | CardEvent         |         | false    | onFinish event                |
-| dislikeButton     | React.JSX.Element |         | false    | your custom dislike button    |
-| likeButton        | React.JSX.Element |         | false    | your custom like button       |
-| withActionButtons | Boolean           | false   | false    | with action buttons flag      |
+| parameter         | type                                   | default | required | description                                 |
+| ----------------- | -------------------------------------- | ------- | -------- | ------------------------------------------- |
+| data              | CardData[]                             |         | true     | data to be passed to the card               |
+| onDismiss         | CardEvent                              |         | false    | When card is dismissed by swipe or by click |
+| onFinish          | (status: SwipeAction.FINISHED) => void |         | false    | onFinish event                              |
+| dislikeButton     | React.JSX.Element                      |         | false    | your custom dislike button                  |
+| likeButton        | React.JSX.Element                      |         | false    | your custom like button                     |
+| withActionButtons | Boolean                                | false   | false    | with action buttons flag                    |
 
 ---
 
@@ -67,8 +69,6 @@ export default function SwipeSelectionPage() {
     <Stack height={'100%'} width={'100%'} direction="column" alignItems="center" justifyContent={'end'} p={2}>
       <SwipeCard
         data={mockData}
-        onLikeSwipe={handleSwipe}
-        onDislikeSwipe={handleSwipe}
         onFinish={handleFinish}
         dislikeButton={<div>Left</div>}
         likeButton={<div>Right</div>}

@@ -1,36 +1,21 @@
 import '../main.css'
 
-import { useMemo } from 'react'
 import { SwiperRightActionButton } from './SwiperRightActionButton'
 import { SwiperLeftActionButton } from './SwiperLeftActionButton'
-import { useSwipeCard } from '../hooks/useSwipeCard'
-import { SwipeCardProps, SwipeDirection } from '../types/types'
+import { useCardSwiper } from '../hooks/useCardSwiper'
+import { CardSwiperProps, SwipeDirection } from '../types/types'
+import { useMemo } from 'react'
 
-export const SwipeCard = ({
-  data,
-  onLikeSwipe,
-  onDislikeSwipe,
-  onDismiss,
-  onFinish,
-  likeButton,
-  dislikeButton,
-  withActionButtons = false,
-}: SwipeCardProps) => {
-  const { handleActionButtonClick, handleNewCard, dynamicData } = useSwipeCard({
-    onDislikeSwipe,
-    onLikeSwipe,
-    onDismiss,
-    onFinish,
-    data,
-  })
+export const CardSwiper = (props: CardSwiperProps) => {
+  const { data, likeButton, dislikeButton, withActionButtons = false, onDismiss, onFinish } = props
+  const { handleClickEvents, handleNewCardSwiper, dynamicData } = useCardSwiper({ onDismiss, onFinish, data })
 
-  const swipeCardComponents = useMemo(
+  const CardComponents = useMemo(
     () =>
-      dynamicData &&
-      dynamicData.map(({ id, header, src, content, meta }, index) => (
+      dynamicData.map(({ id, header, src, content, meta }) => (
         <div
           key={id}
-          ref={(ref) => handleNewCard(ref, id, index, meta)}
+          ref={(ref) => handleNewCardSwiper(ref, id, meta)}
           className="swipe-card__container"
           id="swipe-card__container"
         >
@@ -45,27 +30,27 @@ export const SwipeCard = ({
           {content && <div className="swipe-card__content">{content}</div>}
         </div>
       )),
-    [dynamicData, handleNewCard],
+    [],
   )
 
   return (
     <div className="swipe-card" id="swipe-card">
       <div className="swipe-card__cards" id="swipe-card__cards">
-        {swipeCardComponents}
+        {CardComponents}
       </div>
       {withActionButtons && (
         <div className="swipe-card__children">
           <div
             className="swipe-card__action-button"
             id="swipe-card__like-action-button"
-            onClick={() => handleActionButtonClick(SwipeDirection.LEFT)}
+            onClick={() => handleClickEvents(SwipeDirection.LEFT)}
           >
             {(likeButton && dislikeButton) || <SwiperLeftActionButton />}
           </div>
           <div
             className="swipe-card__action-button"
             id="swipe-card__dislike-action-button"
-            onClick={() => handleActionButtonClick(SwipeDirection.RIGHT)}
+            onClick={() => handleClickEvents(SwipeDirection.RIGHT)}
           >
             {(dislikeButton && likeButton) || <SwiperRightActionButton />}
           </div>

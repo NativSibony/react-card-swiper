@@ -1,31 +1,32 @@
-export interface SwipeCardProps extends CardEvents {
+export interface SwiperProps extends CardEvents {
+  id: CardId
+  meta: CardMetaData
+  element: HTMLDivElement
+}
+
+export interface CardSwiperProps extends CardEvents {
   data: CardData[]
-  withActionButtons?: boolean
-  dislikeButton?: React.JSX.Element
   likeButton?: React.JSX.Element
+  dislikeButton?: React.JSX.Element
+  withActionButtons?: boolean
+}
+
+export interface CardEvents {
+  onFinish?: (status: SwipeAction.FINISHED) => void
+  onDismiss?: CardEvent
 }
 
 export interface CardData {
-  id: string | number
+  id: CardId
   src: string
-  meta: Record<string, unknown> | Array<unknown>
+  meta: CardMetaData
   header?: React.JSX.Element
   content?: React.JSX.Element
 }
 
-export type CardEvent = (
-  element: HTMLDivElement,
-  meta: CardData['meta'],
-  id: CardData['id'],
-  action?: SwipeAction,
-) => void
-
-export interface CardEvents {
-  onLikeSwipe: CardEvent
-  onDislikeSwipe: CardEvent
-  onFinish?: (status: string) => void
-  onDismiss?: () => void
-}
+export type CardId = string | number
+export type CardEvent = (element: HTMLDivElement, meta: CardMetaData, id: CardId, action: SwipeAction) => void
+export type CardMetaData = Record<string, unknown> | Array<unknown>
 
 export enum SwipeDirection {
   LEFT = -1,
@@ -35,5 +36,5 @@ export enum SwipeDirection {
 export enum SwipeAction {
   LIKE = 'like',
   DISLIKE = 'dislike',
-  FINISH = 'finish',
+  FINISHED = 'finished',
 }

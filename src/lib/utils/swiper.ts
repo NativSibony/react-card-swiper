@@ -1,36 +1,24 @@
-import { CardData, CardEvent, CardEvents, SwipeAction } from '../types/types'
-
-interface CardSwiperProps extends CardEvents {
-  id: string | number
-  element: HTMLDivElement
-  meta: CardData['meta']
-}
+import { CardEvent, CardId, CardMetaData, SwipeAction, SwiperProps } from '../types/types'
 
 interface StartPoint {
   x: number
   y: number
 }
 
-export class CardSwiper implements CardSwiperProps {
+export class Swiper implements SwiperProps {
   element: HTMLDivElement
-  id: string | number
-  meta: CardData['meta']
+  id: CardId
+  meta: CardMetaData
+  onDismiss?: CardEvent
 
-  onLikeSwipe: CardEvent
-  onDislikeSwipe: CardEvent
-  onDismiss?: (() => void) | undefined
-
-  constructor({ element, id, meta, onDismiss, onLikeSwipe, onDislikeSwipe }: CardSwiperProps) {
-    this.element = element
+  constructor({ element, id, meta, onDismiss }: SwiperProps) {
     this.id = id
     this.meta = meta
+    this.element = element
     this.onDismiss = onDismiss
-    this.onLikeSwipe = onLikeSwipe
-    this.onDislikeSwipe = onDislikeSwipe
 
     this.init()
   }
-  onFinish?: ((status: string) => void) | undefined
 
   // private properties
   private startPoint: StartPoint | null = { x: 0, y: 0 }
@@ -135,13 +123,8 @@ export class CardSwiper implements CardSwiperProps {
     setTimeout(() => this.element.remove(), 300)
 
     if (typeof this.onDismiss === 'function') {
-      this.onDismiss()
-    }
-    if (typeof this.onLikeSwipe === 'function' && direction === 1) {
-      this.onLikeSwipe(this.element, this.meta, this.id, SwipeAction.LIKE)
-    }
-    if (typeof this.onDislikeSwipe === 'function' && direction === -1) {
-      this.onDislikeSwipe(this.element, this.meta, this.id, SwipeAction.DISLIKE)
+      const swipeDirection = direction === 1 ? SwipeAction.LIKE : SwipeAction.DISLIKE
+      this.onDismiss(this.element, this.meta, this.id, swipeDirection)
     }
   }
 
