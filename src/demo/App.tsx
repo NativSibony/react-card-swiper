@@ -1,7 +1,12 @@
 import React from 'react'
 
-import { CardSwiper } from './lib'
-import { type CardEvent, type CardData } from './lib/types/types'
+import BubbleShooter from '../assets/images/bubble-shooter.png'
+import CandyCrash from '../assets/images/candy-crash.png'
+import ClashRoyal from '../assets/images/clash-royal.jpg'
+import HearthStone from '../assets/images/Hearthstone.jpg'
+
+import { CardSwiper } from '../lib'
+import { type CardEvent, type CardData } from '../lib/types/types'
 
 const Content = () => (
   <div className="flex items-center justify-center">
@@ -13,19 +18,25 @@ const mockData: CardData[] = [
   {
     id: '88552078',
     meta: { apk: 'some-apk-a.apk' },
-    src: new URL('./assets/images/candy-crash.png', import.meta.url).href,
+    src: BubbleShooter,
     content: <Content />,
   },
   {
     id: 'fc7e0bd4',
     meta: { apk: 'some-apk-b.apk' },
-    src: new URL('./assets/images/clash-royal.jpg', import.meta.url).href,
+    src: CandyCrash,
     content: <Content />,
   },
   {
     id: 'da9a7067',
     meta: { apk: 'some-apk-c.apk' },
-    src: new URL('./assets/images/bubble-shooter.png', import.meta.url).href,
+    src: ClashRoyal,
+    content: <Content />,
+  },
+  {
+    id: 'da9afc7e',
+    meta: { apk: 'some-apk-d.apk' },
+    src: HearthStone,
     content: <Content />,
   },
 ]

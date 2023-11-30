@@ -26,8 +26,9 @@
   },
   "author": "Nativ Sibony (https://github.com/nativsibony)",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite src/demo",
     "build": "rm -rf dist && vite build",
+    "build:web": "vite build src/demo",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "npm run build",
     "preview": "vite preview",
@@ -45,6 +46,7 @@
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "^4.2.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.53.0",
