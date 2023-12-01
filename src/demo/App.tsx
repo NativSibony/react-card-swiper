@@ -66,6 +66,10 @@ export default function App() {
     setEvents((prev) => [...prev, `- ID: ${id}, Action: ${action}, Callback: ${JSON.stringify(meta)}}`])
   }
 
+  const handleFinish = (status) => {
+    if (status) setEvents((prev) => [...prev, `Finish: ${status}`])
+  }
+
   return (
     <main className="flex h-full w-full p-5">
       <aside className="p-8 w-1/3">
@@ -82,7 +86,7 @@ export default function App() {
             <input
               type="checkbox"
               name="with action buttons"
-              checked={withEventStream}
+              defaultChecked={withEventStream}
               onClick={() => setWithEventStream((prev) => !prev)}
             />
             <label htmlFor="checkbox">Event Stream</label>
@@ -96,7 +100,7 @@ export default function App() {
         <div className="w-[450px] p-6 h-full">
           <CardSwiper
             data={mockData}
-            onFinish={(status) => console.log(status)}
+            onFinish={handleFinish}
             onDismiss={handleSwipe}
             withActionButtons={withActionButtons}
             dislikeButton={leftActionButton}

@@ -14,7 +14,7 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
 
   useEffect(() => {
     if (!swiperIndex && onFinish) onFinish(SwipeAction.FINISHED)
-  }, [onFinish, swiperIndex])
+  }, [swiperIndex])
 
   const handleNewCardSwiper = (ref: HTMLDivElement | null, id: CardId, meta: CardMetaData) => {
     if (ref) {

@@ -1,10 +1,10 @@
 export { CardSwiper } from './components/CardSwiper'
 
 export {
-  type CardData,
-  type SwipeAction,
-  type SwipeDirection,
-  type CardEvent,
   type CardId,
+  type CardData,
+  type CardEvent,
   type CardMetaData,
+  SwipeAction,
+  SwipeDirection,
 } from './types/types'
