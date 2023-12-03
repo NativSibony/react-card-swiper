@@ -9,6 +9,7 @@ export interface CardSwiperProps extends CardEvents {
   likeButton?: React.JSX.Element
   dislikeButton?: React.JSX.Element
   withActionButtons?: boolean
+  emptyState?: React.JSX.Element
 }
 
 export interface CardEvents {

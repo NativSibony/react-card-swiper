@@ -1,6 +1,6 @@
 ## <h1 align="center">react-card-swiper</h1>
 
-<h5>A Tinder Like Card Swiper</h6>
+## <h4>A Tinder Like Card Swiper</h6>
 
 [![npm package](https://img.shields.io/npm/v/react-card-swiper/latest.svg)](https://www.npmjs.com/package/react-card-swiper)
 [![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
@@ -21,15 +21,17 @@
 - `dislikeButton`: your custom react dislike button
 - `likeButton`: your custom react like button
 - `withActionButtons`: with action buttons flag - if set to true, both like and dislike buttons must be passed as props, otherwise the default one's will appear
+- `emptyState`: your custom empty state when all cards have been dismissed
 
-| parameter         | type                                   | default | required | description                                 |
-| ----------------- | -------------------------------------- | ------- | -------- | ------------------------------------------- |
-| data              | CardData[]                             |         | true     | data to be passed to the card               |
-| onDismiss         | CardEvent                              |         | false    | When card is dismissed by swipe or by click |
-| onFinish          | (status: SwipeAction.FINISHED) => void |         | false    | onFinish event                              |
-| dislikeButton     | React.JSX.Element                      |         | false    | your custom dislike button                  |
-| likeButton        | React.JSX.Element                      |         | false    | your custom like button                     |
-| withActionButtons | Boolean                                | false   | false    | with action buttons flag                    |
+| parameter         | type                                   | default | required | description                                         |
+| ----------------- | -------------------------------------- | ------- | -------- | --------------------------------------------------- |
+| data              | CardData[]                             |         | true     | data to be passed to the card                       |
+| onDismiss         | CardEvent                              |         | false    | When card is dismissed by swipe or by click         |
+| onFinish          | (status: SwipeAction.FINISHED) => void |         | false    | onFinish event                                      |
+| dislikeButton     | React.JSX.Element                      |         | false    | your custom dislike button                          |
+| likeButton        | React.JSX.Element                      |         | false    | your custom like button                             |
+| withActionButtons | Boolean                                | false   | false    | with action buttons flag                            |
+| emptyState        | React.JSX.Element                      |         | false    | will be rendered when all cards have been dismissed |
 
 ---
 
@@ -41,6 +43,7 @@ import { Stack, Typography } from '@mui/material'
 import bubbleShooter from '@/assets/images/bubble-shooter.png'
 import candyCrash from '@/assets/images/candy-crash.png'
 import clashRoyal from '@/assets/images/clash-royal.jpg'
+import EmptyState from '@/assets/images/empty-state.svg'
 
 import { CardData, CardEvent, SwipeCard } from 'react-card-swiper'
 
@@ -58,7 +61,7 @@ const mockData: CardData[] = [
 
 export default function SwipeSelectionPage() {
   const handleSwipe: CardEvent = (el, meta, id, action) => {
-    console.log({ el, meta, id, action })
+    console.log({ el, meta, id, action }) // event data to be handled
   }
 
   const handleFinish = (status: string) => {
@@ -73,6 +76,14 @@ export default function SwipeSelectionPage() {
         dislikeButton={<div>Left</div>}
         likeButton={<div>Right</div>}
         withActionButtons
+        emptyState={
+          <Stack direction={'column'} alignItems={'center'} justifyContent={'center'} textAlign={'center'} gap={2}>
+            <Box component={'img'} width={250} src={EmptyState} />
+            <Typography variant={'subtitle2'}>
+              You've reached the <br /> end of the list
+            </Typography>
+          </Stack>
+        }
       />
     </Stack>
   )

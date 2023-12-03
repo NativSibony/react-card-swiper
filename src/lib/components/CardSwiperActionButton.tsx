@@ -8,7 +8,7 @@ interface ActionButtonProps {
   buttonContent: React.ReactNode
 }
 
-function SwiperActionButton({ buttonContent, direction, isCustom = false, action, onClick }: ActionButtonProps) {
+function CardSwiperActionButton({ buttonContent, direction, isCustom = false, action, onClick }: ActionButtonProps) {
   const className = `swipe-card__${isCustom ? 'custom-' : ''}action-button`
 
   return (
@@ -18,4 +18,4 @@ function SwiperActionButton({ buttonContent, direction, isCustom = false, action
   )
 }
 
-export default SwiperActionButton
+export default CardSwiperActionButton

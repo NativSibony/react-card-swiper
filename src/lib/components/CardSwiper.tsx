@@ -1,15 +1,17 @@
 import '../main.css'
 
-import { SwiperRightActionButton } from './SwiperRightActionButton'
-import { SwiperLeftActionButton } from './SwiperLeftActionButton'
+import { useEffect, useMemo, useState } from 'react'
 import { useCardSwiper } from '../hooks/useCardSwiper'
 import { CardSwiperProps, SwipeAction, SwipeDirection } from '../types/types'
-import { useMemo } from 'react'
-import SwiperActionButton from './SwiperActionButton'
+import CardSwiperActionButton from './CardSwiperActionButton'
+import CardSwiperEmptyState from './CardSwiperEmptyState'
+import { CardSwiperLeftActionButton } from './CardSwiperLeftActionButton'
+import { CardSwiperRightActionButton } from './CardSwiperRightActionButton'
 
 export const CardSwiper = (props: CardSwiperProps) => {
-  const { data, likeButton, dislikeButton, withActionButtons = false, onDismiss, onFinish } = props
-  const { handleClickEvents, handleNewCardSwiper, dynamicData } = useCardSwiper({ onDismiss, onFinish, data })
+  const { data, likeButton, dislikeButton, withActionButtons = false, emptyState, onDismiss, onFinish } = props
+  const { handleClickEvents, handleNewCardSwiper, dynamicData, isFinish } = useCardSwiper({ onDismiss, onFinish, data })
+  const [hideActionButtons, setHideActionButtons] = useState('')
 
   const CardComponents = useMemo(
     () =>
@@ -34,23 +36,28 @@ export const CardSwiper = (props: CardSwiperProps) => {
     [],
   )
 
+  useEffect(() => {
+    if (isFinish) setHideActionButtons('hide-action-buttons')
+  }, [isFinish])
+
   return (
     <div className="swipe-card" id="swipe-card">
       <div className="swipe-card__cards" id="swipe-card__cards">
         {CardComponents}
+        {emptyState && isFinish && <CardSwiperEmptyState children={emptyState} isFinish={isFinish} />}
       </div>
       {withActionButtons && (
-        <div className="swipe-card__children" id="swipe-card__children">
+        <div className={`swipe-card__children ${hideActionButtons}`} id="swipe-card__children">
           {likeButton && dislikeButton ? (
             <>
-              <SwiperActionButton
+              <CardSwiperActionButton
                 isCustom
                 direction={SwipeDirection.LEFT}
                 action={SwipeAction.DISLIKE}
                 onClick={handleClickEvents}
                 buttonContent={dislikeButton}
               />
-              <SwiperActionButton
+              <CardSwiperActionButton
                 isCustom
                 direction={SwipeDirection.RIGHT}
                 action={SwipeAction.LIKE}
@@ -60,17 +67,17 @@ export const CardSwiper = (props: CardSwiperProps) => {
             </>
           ) : (
             <>
-              <SwiperActionButton
+              <CardSwiperActionButton
                 direction={SwipeDirection.LEFT}
                 action={SwipeAction.LIKE}
                 onClick={handleClickEvents}
-                buttonContent={<SwiperLeftActionButton />}
+                buttonContent={<CardSwiperLeftActionButton />}
               />
-              <SwiperActionButton
+              <CardSwiperActionButton
                 direction={SwipeDirection.RIGHT}
                 action={SwipeAction.DISLIKE}
                 onClick={handleClickEvents}
-                buttonContent={<SwiperRightActionButton />}
+                buttonContent={<CardSwiperRightActionButton />}
               />
             </>
           )}

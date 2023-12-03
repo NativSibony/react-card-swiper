@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CardData, CardEvents, CardId, CardMetaData, SwipeAction, SwipeDirection } from '../types/types'
 import { Swiper } from '../utils/swiper'
 
@@ -10,6 +10,7 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
   const swiperElements = useRef<Swiper[]>([])
   const [swiperIndex, setSwiperIndex] = useState(data.length)
   const [dynamicData, setDynamicData] = useState(data)
+  const [isFinish, setIsFinish] = useState(false)
 
   const handleNewCardSwiper = (ref: HTMLDivElement | null, id: CardId, meta: CardMetaData) => {
     if (ref) {
@@ -32,10 +33,14 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
   }
 
   useEffect(() => {
-    if (!swiperIndex && onFinish) onFinish(SwipeAction.FINISHED)
+    if (!swiperIndex && onFinish) {
+      setIsFinish(true)
+      onFinish(SwipeAction.FINISHED)
+    }
   }, [swiperIndex])
 
   return {
+    isFinish,
     dynamicData,
     setDynamicData,
     handleClickEvents,

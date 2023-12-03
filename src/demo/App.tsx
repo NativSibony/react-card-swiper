@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 
+import EmptyState from '../assets/icons/empty-state.svg'
+import HearthStone from '../assets/images/Hearthstone.jpg'
 import BubbleShooter from '../assets/images/bubble-shooter.png'
 import CandyCrash from '../assets/images/candy-crash.png'
 import ClashRoyal from '../assets/images/clash-royal.jpg'
-import HearthStone from '../assets/images/Hearthstone.jpg'
-
 import { CardSwiper } from '../lib'
-import { type CardEvent, type CardData } from '../lib/types/types'
+import { type CardData, type CardEvent } from '../lib/types/types'
 
 const Content = () => (
   <div className="flex items-center justify-center">
     <p className="text-lg p-3">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum sapiente in obcaecati quos maxime, sunt corporis aut
-      eius accusamus placeat numquam fugiat. Voluptatem, vero iste.
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum sapiente in obcaecati quos maxime, sunt corporis aut eius
+      accusamus placeat numquam fugiat. Voluptatem, vero iste.
     </p>
   </div>
 )
@@ -118,6 +118,14 @@ export default function App() {
             withActionButtons={withActionButtons}
             dislikeButton={leftActionButton}
             likeButton={rightActionButton}
+            emptyState={
+              <div className="flex flex-col align-center justify-center text-center text-neutral-400 gap-4">
+                <img width={250} src={EmptyState} />
+                <p className="leading-5">
+                  You've reached the <br /> end of the list
+                </p>
+              </div>
+            }
           />
         </div>
       </section>
