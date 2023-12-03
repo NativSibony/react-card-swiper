@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import BubbleShooter from '../assets/images/bubble-shooter.png'
 import CandyCrash from '../assets/images/candy-crash.png'
@@ -16,6 +16,14 @@ const Content = () => (
     </p>
   </div>
 )
+
+const CustomLikeButton = () => {
+  return <button className="">Like</button>
+}
+
+const CustomDislikeButton = () => {
+  return <button className="">Dislike</button>
+}
 
 const mockData: CardData[] = [
   {
@@ -47,15 +55,15 @@ const mockData: CardData[] = [
 export default function App() {
   const [withActionButtons, setWithActionButtons] = useState(false)
   const [withEventStream, setWithEventStream] = useState(true)
-  const [defaultActionButtons, setDefaultActionButtons] = useState(false)
+  const [defaultActionButtons, setDefaultActionButtons] = useState(true)
   const [leftActionButton, setLeftActionButton] = useState<React.JSX.Element | undefined>()
   const [rightActionButton, setRightActionButton] = useState<React.JSX.Element | undefined>()
   const [events, setEvents] = useState<string[]>([])
 
   useEffect(() => {
-    if (defaultActionButtons) {
-      setLeftActionButton(<div>Left</div>)
-      setRightActionButton(<div>Right</div>)
+    if (!defaultActionButtons) {
+      setLeftActionButton(<CustomDislikeButton />)
+      setRightActionButton(<CustomLikeButton />)
     } else {
       setLeftActionButton(undefined)
       setRightActionButton(undefined)
@@ -78,7 +86,12 @@ export default function App() {
           <label htmlFor="checkbox">With action buttons</label>
         </div>
         <div className="flex items-center gap-2 capitalize">
-          <input type="checkbox" name="with action buttons" onClick={() => setDefaultActionButtons((prev) => !prev)} />
+          <input
+            type="checkbox"
+            defaultChecked={defaultActionButtons}
+            name="with action buttons"
+            onClick={() => setDefaultActionButtons((prev) => !prev)}
+          />
           <label htmlFor="checkbox">Default action buttons</label>
         </div>
         <div>

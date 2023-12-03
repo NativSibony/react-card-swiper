@@ -8,13 +8,8 @@ interface UseCardSwiper extends CardEvents {
 
 export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
   const swiperElements = useRef<Swiper[]>([])
-
-  const [swiperIndex, setCurrentSwiperIndex] = useState(data.length)
+  const [swiperIndex, setSwiperIndex] = useState(data.length)
   const [dynamicData, setDynamicData] = useState(data)
-
-  useEffect(() => {
-    if (!swiperIndex && onFinish) onFinish(SwipeAction.FINISHED)
-  }, [swiperIndex])
 
   const handleNewCardSwiper = (ref: HTMLDivElement | null, id: CardId, meta: CardMetaData) => {
     if (ref) {
@@ -24,19 +19,21 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
   }
 
   const handleDismiss = (element: HTMLDivElement, meta: CardMetaData, id: CardId, action: SwipeAction) => {
-    setCurrentSwiperIndex((prev) => prev - 1)
+    setSwiperIndex((prev) => prev - 1)
     onDismiss && onDismiss(element, meta, id, action)
+    swiperElements.current.pop()
   }
 
-  const handleClickEvents = useCallback(
-    (direction: SwipeDirection) => {
-      if (swiperIndex) {
-        const swiper = swiperElements.current.pop()
-        swiper?.dismissById(direction)
-      }
-    },
-    [swiperIndex],
-  )
+  const handleClickEvents = (direction: SwipeDirection) => {
+    if (swiperIndex) {
+      const swiper = swiperElements.current[swiperIndex - 1]
+      swiper?.dismissById(direction)
+    }
+  }
+
+  useEffect(() => {
+    if (!swiperIndex && onFinish) onFinish(SwipeAction.FINISHED)
+  }, [swiperIndex])
 
   return {
     dynamicData,

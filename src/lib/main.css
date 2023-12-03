@@ -24,25 +24,21 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  border-radius: 25px;
+  border-radius: 15px;
   gap: 10px;
   cursor: grab;
   user-select: none;
-  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  transform: translateY(calc(28px));
+  transform: translateY(30px);
   scale: 0.95;
   transition: all 0.5s;
 }
 
-.swipe-card__container:nth-child(n + 1) {
-  --i: 1;
-}
-
-.card:only-child {
-  --i: 0 !important;
+.swipe-card__container:first-child {
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
 }
 
 .swipe-card__container:last-child {
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
   transform: translateY(0);
   scale: 1;
 }
@@ -70,8 +66,8 @@
 }
 
 .swipe-card__action-button {
-  height: 80px;
-  width: 80px;
+  height: 65px;
+  width: 65px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,8 +3,9 @@ import '../main.css'
 import { SwiperRightActionButton } from './SwiperRightActionButton'
 import { SwiperLeftActionButton } from './SwiperLeftActionButton'
 import { useCardSwiper } from '../hooks/useCardSwiper'
-import { CardSwiperProps, SwipeDirection } from '../types/types'
+import { CardSwiperProps, SwipeAction, SwipeDirection } from '../types/types'
 import { useMemo } from 'react'
+import SwiperActionButton from './SwiperActionButton'
 
 export const CardSwiper = (props: CardSwiperProps) => {
   const { data, likeButton, dislikeButton, withActionButtons = false, onDismiss, onFinish } = props
@@ -39,21 +40,40 @@ export const CardSwiper = (props: CardSwiperProps) => {
         {CardComponents}
       </div>
       {withActionButtons && (
-        <div className="swipe-card__children">
-          <div
-            className="swipe-card__action-button"
-            id="swipe-card__like-action-button"
-            onClick={() => handleClickEvents(SwipeDirection.LEFT)}
-          >
-            {(likeButton && dislikeButton) || <SwiperLeftActionButton />}
-          </div>
-          <div
-            className="swipe-card__action-button"
-            id="swipe-card__dislike-action-button"
-            onClick={() => handleClickEvents(SwipeDirection.RIGHT)}
-          >
-            {(dislikeButton && likeButton) || <SwiperRightActionButton />}
-          </div>
+        <div className="swipe-card__children" id="swipe-card__children">
+          {likeButton && dislikeButton ? (
+            <>
+              <SwiperActionButton
+                isCustom
+                direction={SwipeDirection.LEFT}
+                action={SwipeAction.DISLIKE}
+                onClick={handleClickEvents}
+                buttonContent={dislikeButton}
+              />
+              <SwiperActionButton
+                isCustom
+                direction={SwipeDirection.RIGHT}
+                action={SwipeAction.LIKE}
+                onClick={handleClickEvents}
+                buttonContent={likeButton}
+              />
+            </>
+          ) : (
+            <>
+              <SwiperActionButton
+                direction={SwipeDirection.LEFT}
+                action={SwipeAction.LIKE}
+                onClick={handleClickEvents}
+                buttonContent={<SwiperLeftActionButton />}
+              />
+              <SwiperActionButton
+                direction={SwipeDirection.RIGHT}
+                action={SwipeAction.DISLIKE}
+                onClick={handleClickEvents}
+                buttonContent={<SwiperRightActionButton />}
+              />
+            </>
+          )}
         </div>
       )}
     </div>

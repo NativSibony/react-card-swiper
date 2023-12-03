@@ -76,7 +76,7 @@
     "type": "git",
     "url": "https://github.com/nativsibony/react-card-swiper"
   },
-  "homepage": "https://github.com/nativsibony/react-card-swiper",
+  "homepage": "https://react-card-swiper.netlify.app/",
   "bugs": {
     "url": "https://github.com/nativsibony/react-card-swiper/issues"
   }
