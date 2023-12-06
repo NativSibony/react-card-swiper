@@ -56,10 +56,10 @@ export default function App() {
   const [withActionButtons, setWithActionButtons] = useState(false)
   const [withEventStream, setWithEventStream] = useState(true)
   const [defaultActionButtons, setDefaultActionButtons] = useState(true)
+  const [outsideEventHandlers, setOutsideEventHandlers] = useState(false)
   const [leftActionButton, setLeftActionButton] = useState<React.JSX.Element | undefined>()
   const [rightActionButton, setRightActionButton] = useState<React.JSX.Element | undefined>()
   const [events, setEvents] = useState<string[]>([])
-
   useEffect(() => {
     if (!defaultActionButtons) {
       setLeftActionButton(<CustomDislikeButton />)
@@ -76,6 +76,14 @@ export default function App() {
 
   const handleFinish = (status) => {
     if (status) setEvents((prev) => [...prev, `Finish: ${status}`])
+  }
+
+  const handleOutsideLike = () => {
+    document.getElementById('swipe-card__like-action-button')?.click()
+  }
+
+  const handleOutsideDislike = () => {
+    document.getElementById('swipe-card__dislike-action-button')?.click()
   }
 
   return (
@@ -106,6 +114,25 @@ export default function App() {
           </div>
           <section className="flex flex-col text-left w-full h-[500px] relative p-5 shadow-[0_0_15px_0_rgba(0,0,0,0.2)_inset]">
             {withEventStream && events.map((event, index) => <div key={index}>{event}</div>)}
+          </section>
+          <section className="flex flex-col gap-2 mt-4">
+            <div className="flex items-center gap-2 capitalize">
+              <input
+                type="checkbox"
+                name="Outside event handlers"
+                defaultChecked={outsideEventHandlers}
+                onClick={() => setOutsideEventHandlers((prev) => !prev)}
+              />
+              <label htmlFor="checkbox">Outside event handlers (only works with actions buttons enabled)</label>
+            </div>
+            <div className={`flex gap-2 ${!outsideEventHandlers ? 'hidden' : ''}`}>
+              <button className="bg-red-600 text-white rounded-md p-2 w-full" onClick={handleOutsideDislike}>
+                Dislike
+              </button>
+              <button className="bg-green-600 text-white rounded-md p-2 w-full" onClick={handleOutsideLike}>
+                Like
+              </button>
+            </div>
           </section>
         </div>
       </aside>

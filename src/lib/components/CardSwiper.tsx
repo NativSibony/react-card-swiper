@@ -69,13 +69,13 @@ export const CardSwiper = (props: CardSwiperProps) => {
             <>
               <CardSwiperActionButton
                 direction={SwipeDirection.LEFT}
-                action={SwipeAction.LIKE}
+                action={SwipeAction.DISLIKE}
                 onClick={handleClickEvents}
                 buttonContent={<CardSwiperLeftActionButton />}
               />
               <CardSwiperActionButton
                 direction={SwipeDirection.RIGHT}
-                action={SwipeAction.DISLIKE}
+                action={SwipeAction.LIKE}
                 onClick={handleClickEvents}
                 buttonContent={<CardSwiperRightActionButton />}
               />
