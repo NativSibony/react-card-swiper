@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'path'
+import { defineConfig } from 'vite'
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import dts from 'vite-plugin-dts'
 
 // https://vitejs.dev/config/
@@ -13,17 +14,10 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
-      output: {
-        intro: 'require("./style.css");',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
-      },
     },
     minify: true,
     emptyOutDir: true,
     outDir: 'dist',
   },
-  plugins: [react(), dts()],
+  plugins: [react(), dts(), cssInjectedByJsPlugin()],
 })
