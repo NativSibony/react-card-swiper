@@ -1,9 +1,11 @@
 ## <h1 align="center">react-card-swiper</h1>
 
-## <h4>A Tinder Like Card Swiper</h6>
+<h3>A Tinder Like Card Swiper</h6>
 
 [![npm package](https://img.shields.io/npm/v/react-card-swiper/latest.svg)](https://www.npmjs.com/package/react-card-swiper)
 [![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
+
+**[Demo](https://react-card-swiper.netlify.app/)**
 
 ## 📦 Installation
 

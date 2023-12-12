@@ -69,14 +69,37 @@ export class Swiper implements SwiperProps {
 
   private handleMove = (x: number, y: number) => {
     if (!this.startPoint) return
+    this.showRibbons()
+
     this.offsetX = x - this.startPoint.x
     this.offsetY = y - this.startPoint.y
     const rotate = this.offsetX * 0.1
     this.element.style.transform = `translate(${this.offsetX}px, ${this.offsetY}px) rotate(${rotate}deg)`
     // dismiss card
-    if (Math.abs(this.offsetX) > this.element.clientWidth * 0.2) {
+    if (Math.abs(this.offsetX) > this.element.clientWidth * 0.4) {
       this.dismiss(this.offsetX > 0 ? 1 : -1)
     }
+  }
+
+  private showRibbons = () => {
+    const ribbonLike = this.element.querySelector('.swipe-card__ribbon-like')
+    const ribbonDislike = this.element.querySelector('.swipe-card__ribbon-dislike')
+
+    if (this.offsetX > 0) {
+      ribbonLike?.classList.add('show')
+      ribbonDislike?.classList.remove('show')
+    } else {
+      ribbonLike?.classList.remove('show')
+      ribbonDislike?.classList.add('show')
+    }
+  }
+
+  private hideRibbons = () => {
+    const ribbonLike = this.element.querySelector('.swipe-card__ribbon-like')
+    const ribbonDislike = this.element.querySelector('.swipe-card__ribbon-dislike')
+
+    ribbonLike?.classList.remove('show')
+    ribbonDislike?.classList.remove('show')
   }
 
   // mouse event handlers
@@ -91,6 +114,8 @@ export class Swiper implements SwiperProps {
     this.startPoint = null
     document.removeEventListener('mousemove', this.handleMouseMove)
     this.element.style.transform = ''
+    this.element.style.transition = 'all .5s'
+    this.hideRibbons()
   }
 
   // touch event handlers
@@ -107,6 +132,7 @@ export class Swiper implements SwiperProps {
     document.removeEventListener('touchmove', this.handleTouchMove)
     this.element.style.transform = ''
     this.element.style.transition = 'all .5s'
+    this.hideRibbons()
   }
 
   private dismiss = (direction: number) => {

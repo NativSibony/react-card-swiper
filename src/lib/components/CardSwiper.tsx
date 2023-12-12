@@ -27,6 +27,25 @@ export const CardSwiper = (props: CardSwiperProps) => {
               <h2 id="swipe-card__header">{header}</h2>
             </div>
           )}
+          {props.withRibbons && (
+            <div className="swipe-card__ribbons-container" id="swipe-card__ribbons-container">
+              <div
+                id="swipe-card__ribbon-like"
+                className="swipe-card__ribbon-like"
+                style={{ color: props.ribbonColors?.textColor, backgroundColor: props.ribbonColors?.bgLike }}
+              >
+                {props.likeRibbonText || 'LIKE'}
+              </div>
+              <div
+                id="swipe-card__ribbon-dislike"
+                className="swipe-card__ribbon-dislike"
+                style={{ color: props.ribbonColors?.textColor, backgroundColor: props.ribbonColors?.bgDislike }}
+              >
+                {props.dislikeRibbonText || 'PASS'}
+              </div>
+            </div>
+          )}
+
           <div className="swipe-card__image-container">
             <img className="swipe-card__image" src={src} alt={src} id="swipe-card__image" />
           </div>

@@ -10,6 +10,10 @@ export interface CardSwiperProps extends CardEvents {
   dislikeButton?: React.JSX.Element
   withActionButtons?: boolean
   emptyState?: React.JSX.Element
+  withRibbons?: boolean
+  likeRibbonText?: string
+  dislikeRibbonText?: string
+  ribbonColors?: CardRibbonColors
 }
 
 export interface CardEvents {
@@ -28,7 +32,11 @@ export interface CardData {
 export type CardId = string | number
 export type CardEvent = (element: HTMLDivElement, meta: CardMetaData, id: CardId, action: SwipeAction) => void
 export type CardMetaData = Record<string, unknown> | Array<unknown>
-
+export interface CardRibbonColors {
+  bgLike?: string
+  bgDislike?: string
+  textColor?: string
+}
 export enum SwipeDirection {
   LEFT = -1,
   RIGHT = 1,

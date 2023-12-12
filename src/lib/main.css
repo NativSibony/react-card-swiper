@@ -47,6 +47,46 @@
   display: flex;
 }
 
+.swipe-card__ribbons-container {
+  position: absolute;
+  width: 100%;
+}
+
+.swipe-card__ribbon-like,
+.swipe-card__ribbon-dislike {
+  position: absolute;
+  opacity: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 7rem;
+  font-weight: 700;
+  top: 2.5rem;
+  z-index: 50;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border-radius: 0.375rem;
+  transition: all 0.4s;
+}
+
+.swipe-card__ribbon-like {
+  left: 0;
+  background-color: rgb(74 222 128);
+  transform: rotate(-40deg);
+}
+
+.swipe-card__ribbon-dislike {
+  right: 0;
+  background-color: rgb(248 113 113);
+  transform: rotate(40deg);
+}
+
+.swipe-card__ribbon-like.show,
+.swipe-card__ribbon-dislike.show {
+  opacity: 1;
+}
+
 .swipe-card__image-container {
   position: relative;
   height: 250px;

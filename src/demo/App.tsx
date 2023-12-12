@@ -145,6 +145,10 @@ export default function App() {
             withActionButtons={withActionButtons}
             dislikeButton={leftActionButton}
             likeButton={rightActionButton}
+            withRibbons
+            likeRibbonText="INSTALL"
+            dislikeRibbonText="PASS"
+            ribbonColors={{ bgLike: 'green', bgDislike: 'red', textColor: 'white' }}
             emptyState={
               <div className="flex flex-col align-center justify-center text-center text-neutral-400 gap-4">
                 <img width={250} src={EmptyState} />
