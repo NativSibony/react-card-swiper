@@ -33,6 +33,10 @@
 | dislikeButton     | React.JSX.Element                      |         | false    | your custom dislike button                          |
 | likeButton        | React.JSX.Element                      |         | false    | your custom like button                             |
 | withActionButtons | Boolean                                | false   | false    | with action buttons flag                            |
+| withRibbons       | Boolean                                | false   | false    | with ribbons flag                                   |
+| likeRibbonText    | Boolean                                | LIKE    | false    | ribbon like text                                    |
+| dislikeRibbonText | Boolean                                | PASS    | false    | ribbon dislike text                                 |
+| ribbonColors      | CardRibbonColors                       |         | false    | ribbon background & text colors                     |
 | emptyState        | React.JSX.Element                      |         | false    | will be rendered when all cards have been dismissed |
 
 ---
@@ -78,6 +82,10 @@ export default function SwipeSelectionPage() {
         dislikeButton={<div>Left</div>}
         likeButton={<div>Right</div>}
         withActionButtons
+        withRibbons
+        likeRibbonText="INSTALL"
+        dislikeRibbonText="PASS"
+        ribbonColors={{ bgLike: 'green', bgDislike: 'red', textColor: 'white' }}
         emptyState={
           <Stack direction={'column'} alignItems={'center'} justifyContent={'center'} textAlign={'center'} gap={2}>
             <Box component={'img'} width={250} src={EmptyState} />
