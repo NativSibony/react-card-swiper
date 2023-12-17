@@ -17,6 +17,7 @@
 .swipe-card__container {
   position: absolute;
   overflow: hidden;
+  pointer-events: none;
   top: 0;
   left: 0;
   width: 100%;
@@ -37,6 +38,7 @@
 }
 
 .swipe-card__container:last-of-type {
+  pointer-events: auto;
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
   transform: scale(1) translateY(0px);
 }
