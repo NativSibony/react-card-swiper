@@ -28,19 +28,17 @@
   gap: 10px;
   cursor: grab;
   user-select: none;
-  transform: translateY(30px);
-  scale: 0.95;
+  transform: scale(0.95) translateY(30px);
   transition: all 0.5s;
 }
 
-.swipe-card__container:first-child {
+.swipe-card__container:first-of-type {
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
 }
 
-.swipe-card__container:last-child {
+.swipe-card__container:last-of-type {
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
-  transform: translateY(0);
-  scale: 1;
+  transform: scale(1) translateY(0px);
 }
 
 .swipe-card__header {
@@ -72,13 +70,13 @@
 
 .swipe-card__ribbon-like {
   left: 0;
-  background-color: rgb(74 222 128);
+  background-color: #4ade80;
   transform: rotate(-40deg);
 }
 
 .swipe-card__ribbon-dislike {
   right: 0;
-  background-color: rgb(248 113 113);
+  background-color: #f87171;
   transform: rotate(40deg);
 }
 
@@ -131,11 +129,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  scale: 0.95;
+  transform: scale(0.95);
   transition: all 0.5s ease;
 }
 
 .swipe-card__empty-state.swipe-card__empty-state.show-empty-state {
-  scale: 1;
+  transform: scale(1);
   opacity: 1;
+}
+
+@media (max-height: 750px) {
+  .swipe-card__container {
+    transform: scale(0.95) translateY(25px);
+  }
 }

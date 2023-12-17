@@ -112,7 +112,7 @@ export default function App() {
             />
             <label htmlFor="checkbox">Event Stream</label>
           </div>
-          <section className="flex flex-col text-left w-full h-[500px] relative p-5 shadow-[0_0_15px_0_rgba(0,0,0,0.2)_inset]">
+          <section className="flex flex-col text-left w-full h-[500px] relative p-5 shadow-[0_0_15px_0_rgba(0,0,0,0.2)_inset] overflow-scroll">
             {withEventStream && events.map((event, index) => <div key={index}>{event}</div>)}
           </section>
           <section className="flex flex-col gap-2 mt-4">
