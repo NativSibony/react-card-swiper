@@ -60,6 +60,7 @@ export default function App() {
   const [leftActionButton, setLeftActionButton] = useState<React.JSX.Element | undefined>()
   const [rightActionButton, setRightActionButton] = useState<React.JSX.Element | undefined>()
   const [events, setEvents] = useState<string[]>([])
+
   useEffect(() => {
     if (!defaultActionButtons) {
       setLeftActionButton(<CustomDislikeButton />)

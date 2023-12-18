@@ -3,6 +3,7 @@ import '../main.css'
 import { useEffect, useMemo, useState } from 'react'
 import { useCardSwiper } from '../hooks/useCardSwiper'
 import { CardSwiperProps, SwipeAction, SwipeDirection } from '../types/types'
+import { Swiper } from '../utils/swiper'
 import CardSwiperActionButton from './CardSwiperActionButton'
 import CardSwiperEmptyState from './CardSwiperEmptyState'
 import { CardSwiperLeftActionButton } from './CardSwiperLeftActionButton'
@@ -10,8 +11,17 @@ import { CardSwiperRightActionButton } from './CardSwiperRightActionButton'
 
 export const CardSwiper = (props: CardSwiperProps) => {
   const { data, likeButton, dislikeButton, withActionButtons = false, emptyState, onDismiss, onFinish } = props
-  const { handleClickEvents, handleNewCardSwiper, dynamicData, isFinish } = useCardSwiper({ onDismiss, onFinish, data })
+  const { handleClickEvents, handleNewCardSwiper, dynamicData, isFinish, swiperIndex, swiperElements } = useCardSwiper({
+    onDismiss,
+    onFinish,
+    data,
+  })
+  const [currentSwiper, setCurrentSwiper] = useState<Swiper | undefined>(swiperElements.current[swiperIndex])
   const [hideActionButtons, setHideActionButtons] = useState('')
+
+  useEffect(() => {
+    setCurrentSwiper(swiperElements.current[swiperIndex - 1])
+  }, [swiperElements, swiperIndex])
 
   const CardComponents = useMemo(
     () =>
@@ -58,6 +68,17 @@ export const CardSwiper = (props: CardSwiperProps) => {
   useEffect(() => {
     if (isFinish) setHideActionButtons('hide-action-buttons')
   }, [isFinish])
+
+  useEffect(() => {
+    const handleWindowBlur = () => {
+      currentSwiper?.handleTouchEnd()
+      currentSwiper?.handleMoveUp()
+    }
+
+    window.addEventListener('blur', handleWindowBlur)
+
+    return () => window.removeEventListener('blur', handleWindowBlur)
+  }, [currentSwiper])
 
   return (
     <div className="swipe-card" id="swipe-card">

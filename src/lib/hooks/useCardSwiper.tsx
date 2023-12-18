@@ -42,6 +42,8 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
   return {
     isFinish,
     dynamicData,
+    swiperIndex,
+    swiperElements,
     setDynamicData,
     handleClickEvents,
     handleNewCardSwiper,

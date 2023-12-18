@@ -35,17 +35,6 @@ export class Swiper implements SwiperProps {
     } else {
       this.listenToMouseEvents()
     }
-    this.listenToBlurEvent()
-  }
-
-  private listenToBlurEvent() {
-    window.addEventListener('blur', this.handleBlurEvent)
-  }
-
-  private handleBlurEvent = () => {
-    this.handleMoveUp()
-    this.handleTouchEnd()
-    window.removeEventListener('blur', this.handleBlurEvent)
   }
 
   private listenToTouchEvents = () => {
@@ -121,7 +110,7 @@ export class Swiper implements SwiperProps {
     this.handleMove(clientX, clientY)
   }
 
-  private handleMoveUp = () => {
+  handleMoveUp = () => {
     this.startPoint = null
     document.removeEventListener('mousemove', this.handleMouseMove)
     this.element.style.transform = ''
@@ -138,7 +127,7 @@ export class Swiper implements SwiperProps {
     this.handleMove(clientX, clientY)
   }
 
-  private handleTouchEnd = () => {
+  handleTouchEnd = () => {
     this.startPoint = null
     document.removeEventListener('touchmove', this.handleTouchMove)
     this.element.style.transform = ''
