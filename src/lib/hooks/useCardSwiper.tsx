@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { CardData, CardEvents, CardId, CardMetaData, SwipeAction, SwipeDirection } from '../types/types'
+import { CardData, CardEvents, CardId, CardMetaData, SwipeAction, SwipeDirection, SwipeOperation } from '../types/types'
 import { Swiper } from '../utils/swiper'
 
 interface UseCardSwiper extends CardEvents {
@@ -19,9 +19,15 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
     }
   }
 
-  const handleDismiss = (element: HTMLDivElement, meta: CardMetaData, id: CardId, action: SwipeAction) => {
+  const handleDismiss = (
+    element: HTMLDivElement,
+    meta: CardMetaData,
+    id: CardId,
+    action: SwipeAction,
+    operation: SwipeOperation,
+  ) => {
     setSwiperIndex((prev) => prev - 1)
-    onDismiss && onDismiss(element, meta, id, action)
+    onDismiss && onDismiss(element, meta, id, action, operation)
     swiperElements.current.pop()
   }
 

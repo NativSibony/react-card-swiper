@@ -30,7 +30,13 @@ export interface CardData {
 }
 
 export type CardId = string | number
-export type CardEvent = (element: HTMLDivElement, meta: CardMetaData, id: CardId, action: SwipeAction) => void
+export type CardEvent = (
+  element: HTMLDivElement,
+  meta: CardMetaData,
+  id: CardId,
+  action: SwipeAction,
+  operation: SwipeOperation,
+) => void
 export type CardMetaData = Record<string, unknown> | Array<unknown>
 export interface CardRibbonColors {
   bgLike?: string
@@ -46,4 +52,9 @@ export enum SwipeAction {
   LIKE = 'like',
   DISLIKE = 'dislike',
   FINISHED = 'finished',
+}
+
+export enum SwipeOperation {
+  SWIPE = 'swipe',
+  CLICK = 'click',
 }

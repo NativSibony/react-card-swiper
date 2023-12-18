@@ -1,4 +1,4 @@
-import { CardEvent, CardId, CardMetaData, SwipeAction, SwiperProps } from '../types/types'
+import { CardEvent, CardId, CardMetaData, SwipeAction, SwipeOperation, SwiperProps } from '../types/types'
 
 interface StartPoint {
   x: number
@@ -135,7 +135,7 @@ export class Swiper implements SwiperProps {
     this.hideRibbons()
   }
 
-  private dismiss = (direction: number) => {
+  private dismiss = (direction: number, swipeOperation: SwipeOperation = SwipeOperation.SWIPE) => {
     this.startPoint = null
     document.removeEventListener('mouseup', this.handleMoveUp)
     document.removeEventListener('mousemove', this.handleMouseMove)
@@ -150,11 +150,11 @@ export class Swiper implements SwiperProps {
 
     if (typeof this.onDismiss === 'function') {
       const swipeDirection = direction === 1 ? SwipeAction.LIKE : SwipeAction.DISLIKE
-      this.onDismiss(this.element, this.meta, this.id, swipeDirection)
+      this.onDismiss(this.element, this.meta, this.id, swipeDirection, swipeOperation)
     }
   }
 
   dismissById = (direction: number) => {
-    this.dismiss(direction)
+    this.dismiss(direction, SwipeOperation.CLICK)
   }
 }

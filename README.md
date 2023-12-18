@@ -66,8 +66,8 @@ const mockData: CardData[] = [
 ]
 
 export default function SwipeSelectionPage() {
-  const handleSwipe: CardEvent = (el, meta, id, action) => {
-    console.log({ el, meta, id, action }) // event data to be handled
+  const handleSwipe: CardEvent = (el, meta, id, action, operation) => {
+    console.log({ el, meta, id, action, operation }) // event data to be handled
   }
 
   const handleFinish = (status: string) => {

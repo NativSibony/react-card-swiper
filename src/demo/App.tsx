@@ -71,8 +71,8 @@ export default function App() {
     }
   }, [defaultActionButtons])
 
-  const handleSwipe: CardEvent = (el, meta, id, action) => {
-    setEvents((prev) => [...prev, `- ID: ${id}, Action: ${action}, Callback: ${JSON.stringify(meta)}}`])
+  const handleSwipe: CardEvent = (el, meta, id, action, operation) => {
+    setEvents((prev) => [...prev, `- ID: ${id}, Action: ${action}, Operation: ${operation}, Callback: ${JSON.stringify(meta)}}`])
   }
 
   const handleFinish = (status) => {
