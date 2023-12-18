@@ -35,6 +35,17 @@ export class Swiper implements SwiperProps {
     } else {
       this.listenToMouseEvents()
     }
+    this.listenToBlurEvent()
+  }
+
+  private listenToBlurEvent() {
+    window.addEventListener('blur', this.handleBlurEvent)
+  }
+
+  private handleBlurEvent = () => {
+    this.handleMoveUp()
+    this.handleTouchEnd()
+    window.removeEventListener('blur', this.handleBlurEvent)
   }
 
   private listenToTouchEvents = () => {
