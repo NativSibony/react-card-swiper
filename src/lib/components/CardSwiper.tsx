@@ -7,6 +7,7 @@ import { Swiper } from '../utils/swiper'
 import CardSwiperActionButton from './CardSwiperActionButton'
 import CardSwiperEmptyState from './CardSwiperEmptyState'
 import { CardSwiperLeftActionButton } from './CardSwiperLeftActionButton'
+import CardSwiperRibbons from './CardSwiperRibbons'
 import { CardSwiperRightActionButton } from './CardSwiperRightActionButton'
 
 export const CardSwiper = (props: CardSwiperProps) => {
@@ -38,22 +39,11 @@ export const CardSwiper = (props: CardSwiperProps) => {
             </div>
           )}
           {props.withRibbons && (
-            <div className="swipe-card__ribbons-container" id="swipe-card__ribbons-container">
-              <div
-                id="swipe-card__ribbon-like"
-                className="swipe-card__ribbon-like"
-                style={{ color: props.ribbonColors?.textColor, backgroundColor: props.ribbonColors?.bgLike }}
-              >
-                {props.likeRibbonText || 'LIKE'}
-              </div>
-              <div
-                id="swipe-card__ribbon-dislike"
-                className="swipe-card__ribbon-dislike"
-                style={{ color: props.ribbonColors?.textColor, backgroundColor: props.ribbonColors?.bgDislike }}
-              >
-                {props.dislikeRibbonText || 'PASS'}
-              </div>
-            </div>
+            <CardSwiperRibbons
+              likeRibbonText={props.likeRibbonText}
+              dislikeRibbonText={props.dislikeRibbonText}
+              ribbonColors={props.ribbonColors}
+            />
           )}
 
           <div className="swipe-card__image-container">
