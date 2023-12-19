@@ -6,6 +6,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
 
 **[Demo](https://react-card-swiper.netlify.app/)**
+![alt demo](https://i.ibb.co/StTp25Y/Screenshot-2023-12-20-at-10-00-58.png)
 
 ## 📦 Installation
 
