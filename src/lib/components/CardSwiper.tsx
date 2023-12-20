@@ -11,18 +11,24 @@ import CardSwiperRibbons from './CardSwiperRibbons'
 import { CardSwiperRightActionButton } from './CardSwiperRightActionButton'
 
 export const CardSwiper = (props: CardSwiperProps) => {
-  const { data, likeButton, dislikeButton, withActionButtons = false, emptyState, onDismiss, onFinish } = props
-  const { handleClickEvents, handleNewCardSwiper, dynamicData, isFinish, swiperIndex, swiperElements } = useCardSwiper({
-    onDismiss,
-    onFinish,
-    data,
-  })
+  const { data, likeButton, dislikeButton, withActionButtons = false, emptyState, onDismiss, onFinish, onEnter } = props
+  const { handleEnter, handleClickEvents, handleNewCardSwiper, dynamicData, isFinish, swiperIndex, swiperElements } =
+    useCardSwiper({
+      onDismiss,
+      onFinish,
+      onEnter,
+      data,
+    })
   const [currentSwiper, setCurrentSwiper] = useState<Swiper | undefined>(swiperElements.current[swiperIndex])
   const [hideActionButtons, setHideActionButtons] = useState('')
 
   useEffect(() => {
     setCurrentSwiper(swiperElements.current[swiperIndex - 1])
   }, [swiperElements, swiperIndex])
+
+  useEffect(() => {
+    currentSwiper && handleEnter(currentSwiper.element, currentSwiper.id)
+  }, [currentSwiper])
 
   const CardComponents = useMemo(
     () =>

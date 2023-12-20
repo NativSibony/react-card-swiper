@@ -1,12 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
-import { CardData, CardEvents, CardId, CardMetaData, SwipeAction, SwipeDirection, SwipeOperation } from '../types/types'
+import {
+  CardData,
+  CardEnterEvent,
+  CardEvents,
+  CardId,
+  CardMetaData,
+  SwipeAction,
+  SwipeDirection,
+  SwipeOperation,
+} from '../types/types'
 import { Swiper } from '../utils/swiper'
 
 interface UseCardSwiper extends CardEvents {
   data: CardData[]
 }
 
-export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
+export const useCardSwiper = ({ onDismiss, onFinish, onEnter, data }: UseCardSwiper) => {
   const swiperElements = useRef<Swiper[]>([])
   const [swiperIndex, setSwiperIndex] = useState(data.length)
   const [dynamicData, setDynamicData] = useState(data)
@@ -17,6 +26,10 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
       const currentSwiper = new Swiper({ element: ref, id, meta, onDismiss: handleDismiss })
       swiperElements.current.push(currentSwiper)
     }
+  }
+
+  const handleEnter: CardEnterEvent = (element, id) => {
+    onEnter && onEnter(element, id)
   }
 
   const handleDismiss = (
@@ -50,6 +63,7 @@ export const useCardSwiper = ({ onDismiss, onFinish, data }: UseCardSwiper) => {
     dynamicData,
     swiperIndex,
     swiperElements,
+    handleEnter,
     setDynamicData,
     handleClickEvents,
     handleNewCardSwiper,

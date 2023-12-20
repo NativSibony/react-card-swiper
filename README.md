@@ -68,7 +68,7 @@ const mockData: CardData[] = [
 ]
 
 export default function SwipeSelectionPage() {
-  const handleSwipe: CardEvent = (el, meta, id, action, operation) => {
+  const handleDismiss: CardEvent = (el, meta, id, action, operation) => {
     console.log({ el, meta, id, action, operation }) // event data to be handled
   }
 
@@ -76,11 +76,17 @@ export default function SwipeSelectionPage() {
     console.log(status) // 'finished'
   }
 
+  const handleEnter: CardEnterEvent = (el, id) => {
+    console.log(el, id)
+  }
+
   return (
     <Stack height={'100%'} width={'100%'} direction="column" alignItems="center" justifyContent={'end'} p={2}>
       <SwipeCard
         data={mockData}
+        onEnter={handleEnter}
         onFinish={handleFinish}
+        onDismiss={handleDismiss}
         dislikeButton={<div>Left</div>}
         likeButton={<div>Right</div>}
         withActionButtons

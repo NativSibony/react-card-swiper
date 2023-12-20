@@ -5,6 +5,7 @@ export {
   SwipeDirection,
   SwipeOperation,
   type CardData,
+  type CardEnterEvent,
   type CardEvent,
   type CardId,
   type CardMetaData,
