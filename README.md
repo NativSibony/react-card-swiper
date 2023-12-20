@@ -21,6 +21,7 @@
 
 - `data`: Card Data Array of Objects
 - `onDismiss`: Card Event of Card Dismiss
+- `onEnter`: Card Event of Card Enter
 - `onFinish`: When All Cards Have Been Dismissed
 - `dislikeButton`: your custom react dislike button
 - `likeButton`: your custom react like button
@@ -31,6 +32,7 @@
 | ----------------- | -------------------------------------- | ------- | -------- | --------------------------------------------------- |
 | data              | CardData[]                             |         | true     | data to be passed to the card                       |
 | onDismiss         | CardEvent                              |         | false    | When card is dismissed by swipe or by click         |
+| onEnter           | CardEnterEvent                         |         | false    | When new card is entered                            |
 | onFinish          | (status: SwipeAction.FINISHED) => void |         | false    | onFinish event                                      |
 | dislikeButton     | React.JSX.Element                      |         | false    | your custom dislike button                          |
 | likeButton        | React.JSX.Element                      |         | false    | your custom like button                             |
