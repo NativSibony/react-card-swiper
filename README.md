@@ -1,11 +1,11 @@
 ## <h1 align="center">react-card-swiper</h1>
 
-## <img src="https://i.ibb.co/StTp25Y/Screenshot-2023-12-20-at-10-00-58.png" alt="demo" />
-
 <h3>A Tinder Like Card Swiper</h6>
 
 [![npm package](https://img.shields.io/npm/v/react-card-swiper/latest.svg)](https://www.npmjs.com/package/react-card-swiper)
 [![npm downloads](https://img.shields.io/npm/dm/react-card-swiper.svg)](https://www.npmjs.com/package/react-card-swiper)
+
+## <img src="https://i.ibb.co/StTp25Y/Screenshot-2023-12-20-at-10-00-58.png" alt="demo" />
 
 **[Demo](https://react-card-swiper.netlify.app/)**
 
