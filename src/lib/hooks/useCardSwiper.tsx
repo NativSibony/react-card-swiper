@@ -28,8 +28,8 @@ export const useCardSwiper = ({ onDismiss, onFinish, onEnter, data }: UseCardSwi
     }
   }
 
-  const handleEnter: CardEnterEvent = (element, id) => {
-    onEnter && onEnter(element, id)
+  const handleEnter: CardEnterEvent = (element, meta, id) => {
+    onEnter && onEnter(element, meta, id)
   }
 
   const handleDismiss = (

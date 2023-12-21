@@ -31,7 +31,7 @@ export interface CardData {
 }
 
 export type CardId = string | number
-export type CardEnterEvent = (element: HTMLDivElement, id: CardId) => void
+export type CardEnterEvent = (element: HTMLDivElement, meta: CardMetaData, id: CardId) => void
 export type CardEvent = (
   element: HTMLDivElement,
   meta: CardMetaData,

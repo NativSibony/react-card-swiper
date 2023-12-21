@@ -27,7 +27,7 @@ export const CardSwiper = (props: CardSwiperProps) => {
   }, [swiperElements, swiperIndex])
 
   useEffect(() => {
-    currentSwiper && handleEnter(currentSwiper.element, currentSwiper.id)
+    currentSwiper && handleEnter(currentSwiper.element, currentSwiper.meta, currentSwiper.id)
   }, [currentSwiper])
 
   const CardComponents = useMemo(
