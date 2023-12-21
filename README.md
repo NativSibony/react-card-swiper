@@ -78,8 +78,8 @@ export default function SwipeSelectionPage() {
     console.log(status) // 'finished'
   }
 
-  const handleEnter: CardEnterEvent = (el, id) => {
-    console.log(el, id)
+  const handleEnter: CardEnterEvent = (el, meta, id) => {
+    console.log(el, meta, id)
   }
 
   return (
