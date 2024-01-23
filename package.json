@@ -9,12 +9,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/react-card-swiper.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/react-card-swiper.js"
       },
       "require": {
-        "default": "./dist/react-card-swiper.umd.cjs",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/react-card-swiper.umd.cjs"
       }
     }
   },
