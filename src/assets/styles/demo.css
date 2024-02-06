@@ -15,3 +15,7 @@ body {
   width: 100vw;
   position: fixed;
 }
+
+.swipe-card__image-container {
+  height: auto !important;
+}
