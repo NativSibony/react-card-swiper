@@ -32,9 +32,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepare": "npm run build",
     "preview": "vite preview",
-    "pub:patch": "npm version patch --force && npm publish",
-    "pub:minor": "npm version minor --force && npm publish",
-    "pub:major": "npm version major --force && npm publish"
+    "pub:patch": "npm version patch --force",
+    "pub:minor": "npm version minor --force",
+    "pub:major": "npm version major --force"
   },
   "dependencies": {
     "react": "^18.2.0",
