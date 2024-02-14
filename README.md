@@ -55,7 +55,7 @@ import candyCrash from '@/assets/images/candy-crash.png'
 import clashRoyal from '@/assets/images/clash-royal.jpg'
 import EmptyState from '@/assets/images/empty-state.svg'
 
-import { CardData, CardEvent, SwipeCard } from 'react-card-swiper'
+import { CardData, CardEvent, CardSwiper } from 'react-card-swiper'
 
 const Content = () => (
   <Typography px={2} variant="h6">
@@ -84,7 +84,7 @@ export default function SwipeSelectionPage() {
 
   return (
     <Stack height={'100%'} width={'100%'} direction="column" alignItems="center" justifyContent={'end'} p={2}>
-      <SwipeCard
+      <CardSwiper
         data={mockData}
         onEnter={handleEnter}
         onFinish={handleFinish}
